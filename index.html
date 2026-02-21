@@ -3,106 +3,341 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nikhil Dofe</title>
+  <title>Nikhil Dofe - B.Tech Engineering Notes</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary: #007bff;
-      --light-bg: #f9f9f9;
-      --dark-bg: #1e1e2f;
-      --light-text: #333;
-      --dark-text: #f0f0f0;
-      --card-bg-light: #fff;
-      --card-bg-dark: #2c2c3d;
+      --secondary: #6f42c1;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --light-bg: #f8f9fa;
+      --dark-bg: #1a1a2e;
+      --light-text: #2c3e50;
+      --dark-text: #ecf0f1;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #16213e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: var(--light-bg);
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--light-bg) 0%, #e8eef7 100%);
       color: var(--light-text);
-      transition: background 0.3s, color 0.3s;
+      transition: all 0.3s ease;
     }
 
     body.dark-mode {
-      background-color: var(--dark-bg);
+      background: linear-gradient(135deg, var(--dark-bg) 0%, #0f3460 100%);
       color: var(--dark-text);
     }
 
+    /* Header with Gradient */
     header {
-      background-color: var(--primary);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
-      padding: 25px;
+      padding: 40px 25px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 8px 32px rgba(0, 123, 255, 0.3);
+      animation: slideDown 0.5s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     header h1 {
-      margin: 0;
-      font-size: 28px;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    .theme-toggle {
+    .header-subtitle {
+      font-size: 0.95em;
+      opacity: 0.9;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Enhanced Search Bar */
+    .search-bar {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 14px 45px 14px 20px;
+      border: none;
+      border-radius: 50px;
+      font-size: 15px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--light-text);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .search-bar input:focus {
+      background: white;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      transform: scale(1.02);
+    }
+
+    .search-bar input::placeholder {
+      color: #999;
+    }
+
+    .search-bar i {
       position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    /* Theme Toggle with Animation */
+    .theme-toggle {
+      position: fixed;
       top: 20px;
       right: 20px;
-      background: white;
-      color: var(--primary);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
+      padding: 12px 16px;
+      border-radius: 50px;
       cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
     }
 
     .theme-toggle:hover {
-      background: var(--primary);
-      color: white;
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
     }
 
     section {
-      padding: 25px;
-      max-width: 1000px;
-      margin: auto;
+      padding: 30px 25px;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     h2 {
       color: var(--primary);
-      font-size: 22px;
+      font-size: 1.8em;
+      margin: 30px 0 20px 0;
+      padding-bottom: 15px;
+      position: relative;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    h2::before {
+      content: '📚';
+      margin-right: 10px;
+    }
+
+    .subject-section {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .subject-section.visible {
+      display: block;
+    }
+
+    /* Category Badges Container */
+    .category-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-bottom: 15px;
+    }
+
+    /* Category Badge */
+    .category-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 0.85em;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .category-badge:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
     }
 
     .pdf-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 18px;
+      margin: 20px 0 30px 0;
+      padding-bottom: 25px;
+      border-bottom: 2px solid rgba(0, 123, 255, 0.2);
+      position: relative;
     }
 
     .pdf-card {
-      background-color: var(--card-bg-light);
-      border-radius: 10px;
-      padding: 15px;
+      background: linear-gradient(135deg, var(--card-bg-light) 0%, #f0f4ff 100%);
+      border-radius: 15px;
+      padding: 20px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
+      user-select: none;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pdf-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .pdf-card:hover::before {
+      left: 100%;
     }
 
     body.dark-mode .pdf-card {
-      background-color: var(--card-bg-dark);
+      background: linear-gradient(135deg, var(--card-bg-dark) 0%, #1e2d4a 100%);
     }
 
     .pdf-card i {
       color: var(--primary);
-      font-size: 24px;
-      margin-bottom: 8px;
+      font-size: 32px;
+      margin-bottom: 12px;
+      display: block;
+      transition: transform 0.3s ease;
     }
 
     .pdf-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 123, 255, 0.25);
+      border-color: var(--primary);
+    }
+
+    .pdf-card:hover i {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .pdf-card-title {
+      font-weight: 600;
+      color: var(--light-text);
+      font-size: 0.95em;
+      margin-top: 8px;
+    }
+
+    body.dark-mode .pdf-card-title {
+      color: var(--dark-text);
+    }
+
+    /* Highlight in Search */
+    .highlight {
+      background: linear-gradient(120deg, #ffeb3b, #ffc107);
+      color: #000;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+    }
+
+    body.dark-mode .highlight {
+      background: linear-gradient(120deg, #ffd700, #ffb300);
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 60px 20px;
+      color: #999;
+      font-size: 1.1em;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .no-results-icon {
+      font-size: 4em;
+      margin-bottom: 20px;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Social Section */
+    .social-section {
+      text-align: center;
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 3px solid rgba(0, 123, 255, 0.2);
+    }
+
+    .social-section h2 {
+      margin-bottom: 25px;
     }
 
     .social-links {
@@ -110,33 +345,50 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 20px;
-      margin: 30px 0 20px;
+      margin: 30px 0;
     }
 
     .social-links a {
       text-decoration: none;
-      color: inherit;
-      font-size: 20px;
+      color: var(--light-text);
+      font-size: 15px;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: transform 0.3s, color 0.3s;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      padding: 10px 0;
+      position: relative;
     }
+
+    body.dark-mode .social-links a {
+      color: var(--dark-text);
+    }
+
+    .social-links a i {
+      font-size: 22px;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a.github i { color: #333; }
+    .social-links a.linkedin i { color: #0077B5; }
+    .social-links a.facebook i { color: #1877F2; }
+    .social-links a.instagram i { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .social-links a.twitter i { color: #1DA1F2; }
+    .social-links a.whatsapp i { color: #25D366; }
+    .social-links a.telegram i { color: #0088cc; }
+    .social-links a.pinterest i { color: #E60023; }
 
     .social-links a:hover {
-      transform: scale(1.2);
-      color: var(--primary);
+      transform: translateY(-5px);
     }
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      background-color: var(--primary);
-      color: white;
-      font-size: 14px;
+    .social-links a:hover i {
+      transform: scale(1.3) rotate(10deg);
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     }
 
-    /* Modal */
+    /* Enhanced Modal */
     .modal {
       display: none;
       position: fixed;
@@ -145,185 +397,642 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
     }
 
     .modal-content {
-      background-color: var(--card-bg-light);
-      padding: 20px;
-      border-radius: 10px;
+      background: linear-gradient(135deg, var(--card-bg-light) 0%, #f0f4ff 100%);
+      padding: 35px;
+      border-radius: 20px;
       text-align: center;
-      width: 300px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 350px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 2px solid var(--primary);
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     body.dark-mode .modal-content {
-      background-color: var(--card-bg-dark);
+      background: linear-gradient(135deg, var(--card-bg-dark) 0%, #1e2d4a 100%);
       color: var(--dark-text);
     }
 
+    .modal-icon {
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .modal-title {
+      font-size: 1.3em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--primary);
+      word-break: break-word;
+    }
+
     .modal-content button {
-      margin: 10px 5px;
-      padding: 10px 15px;
+      margin: 8px 5px;
+      padding: 12px 20px;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
       cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s, color 0.3s;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      font-size: 0.95em;
     }
 
     .view-btn {
-      background-color: var(--primary);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
       color: white;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .view-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.5);
     }
 
     .download-btn {
-      background-color: #28a745;
+      background: linear-gradient(135deg, var(--success) 0%, #20c997 100%);
       color: white;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(40, 167, 69, 0.5);
     }
 
     .cancel-btn {
-      background-color: #dc3545;
+      background: linear-gradient(135deg, var(--danger) 0%, #e74c3c 100%);
       color: white;
+      box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
     }
 
-    @media (max-width: 500px) {
-      .pdf-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    .cancel-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 25px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      font-size: 0.95em;
+      margin-top: 50px;
+      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    footer p {
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
       }
+
+      .header-subtitle {
+        font-size: 0.85em;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      .category-badges {
+        gap: 8px;
+      }
+
+      .category-badge {
+        font-size: 0.8em;
+        padding: 6px 14px;
+      }
+
+      .pdf-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 12px;
+      }
+
+      .pdf-card {
+        padding: 15px;
+      }
+
+      .pdf-card i {
+        font-size: 24px;
+      }
+
+      .social-links {
+        gap: 15px;
+      }
+
+      .modal-content {
+        width: 90%;
+        max-width: 320px;
+        padding: 25px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 30px 15px;
+      }
+
+      header h1 {
+        font-size: 1.6em;
+      }
+
+      .search-bar input {
+        padding: 12px 40px 12px 15px;
+        font-size: 14px;
+      }
+
+      h2 {
+        font-size: 1.3em;
+      }
+
+      .category-badges {
+        gap: 6px;
+      }
+
+      .category-badge {
+        font-size: 0.75em;
+        padding: 5px 12px;
+      }
+
+      .pdf-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .pdf-card {
+        padding: 12px;
+      }
+
+      .pdf-card i {
+        font-size: 20px;
+      }
+
+      .social-links {
+        gap: 10px;
+        flex-direction: column;
+      }
+
       .social-links a {
-        font-size: 18px;
+        font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
 
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
 
-  <header>
-    <h1>B. Tech Engineering Notes</h1>
-  </header>
+<header>
+  <h1>📖 Engineering Notes Hub✍️</h1>
+  <p class="header-subtitle">Your Ultimate Guide to B.Tech Subjects</p>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="🔍 Search subjects..." onkeyup="searchSubjects()">
+    <i class="fas fa-search"></i>
+  </div>
+</header>
 
-  <section>
-    <h2>B. Tech Civil 7<sup>th</sup> Semester - Air Pollution & Solid Waste Management</h2>
-    <div class="pdf-grid">
-      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 1.pdf')"><i class="fa fa-file-pdf"></i> Chapter 1</div>
-      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 2.pdf')"><i class="fa fa-file-pdf"></i> Chapter 2</div>
-      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 3.pdf')"><i class="fa fa-file-pdf"></i> Chapter 3</div>
-      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 4.pdf')"><i class="fa fa-file-pdf"></i> Chapter 4</div>
-      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 5.pdf')"><i class="fa fa-file-pdf"></i> Chapter 5</div>
+<section>
+  <div class="subject-section visible" data-subject="Building Construction Materials and Practices">
+    <h2>Building Construction Materials & Practices</h2>
+    <div class="category-badges">
+      <span class="category-badge">🛠️ Mechanical Engineering</span>
     </div>
-
-    <h2>B. Tech Civil 5<sup>th</sup> Semester - Hydraulics Engineering</h2>
     <div class="pdf-grid">
-      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 1.pdf')"><i class="fa fa-file-pdf"></i> Chapter 1</div>   
-      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 2.pdf')"><i class="fa fa-file-pdf"></i> Chapter 2</div>
-      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 3.pdf')"><i class="fa fa-file-pdf"></i> Chapter 3</div>
-      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 4.pdf')"><i class="fa fa-file-pdf"></i> Chapter 4</div>
-      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 5.pdf')"><i class="fa fa-file-pdf"></i> Chapter 5</div>
-    </div>
-    
-    <h2>B. Tech Mechanical 3<sup>rd</sup> Semester - Building Construction Materials and Practices</h2>
-    <div class="pdf-grid">
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 1.pdf')"><i class="fa fa-file-pdf"></i> Chapter 1</div>
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 2.pdf')"><i class="fa fa-file-pdf"></i> Chapter 2</div>
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 3.pdf')"><i class="fa fa-file-pdf"></i> Chapter 3</div>
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 4.pdf')"><i class="fa fa-file-pdf"></i> Chapter 4</div>
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 5.pdf')"><i class="fa fa-file-pdf"></i> Chapter 5</div>
-    </div>
-
- <h2>B. Tech Civil 3<sup>rd</sup> Semester - CommunityProject/Mini Project Samples</h2>
-    <div class="pdf-grid">
-      <div class="pdf-card" onclick="openModal('CommunityProject/Mini Project/CommunityProject/Mini Project.pdf')"><i class="fa fa-file-pdf"></i> Title Page Samples </div>
-      <div class="pdf-card" onclick="openModal('CommunityProject/Mini Project/CommunityProject/Mini Project.pdf')"><i class="fa fa-file-pdf"></i> Report Samples </div>
-    </div>
-    
-<h2>B. Tech Civil 5<sup>rd</sup> Semester - Summer Intership Report Samples</h2>
-    <div class="pdf-grid">
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 1.pdf')"><i class="fa fa-file-pdf"></i> Title Page Samples</div>
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 2.pdf')"><i class="fa fa-file-pdf"></i> Report Samples</div>
-    </div>
-    
-<h2>B. Tech Civil 7<sup>rd</sup> Semester - Summer Intership Report Samples</h2>
-    <div class="pdf-grid">
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 1.pdf')"><i class="fa fa-file-pdf"></i> Title Page Samples</div>
-      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 2.pdf')"><i class="fa fa-file-pdf"></i> Report Samples</div>
-    </div>
-
-
-    
-  </section>
-
-  <!-- Modal -->
-  <div id="pdfModal" class="modal">
-    <div class="modal-content">
-      <p id="modalTitle">Chapter</p>
-      <button class="view-btn" id="viewBtn">View</button>
-      <button class="download-btn" id="downloadBtn">Download</button>
-      <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 1.pdf')">
+        <i class="fas fa-book"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 2.pdf')">
+        <i class="fas fa-book"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 3.pdf')">
+        <i class="fas fa-book"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 4.pdf')">
+        <i class="fas fa-book"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Building Construction Materials and Practices/Building Construction Materials and Practices Chapter 5.pdf')">
+        <i class="fas fa-book"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
     </div>
   </div>
 
-  <section>
-    <h2>Get in touch</h2>
-    <div class="social-links">
-      <a href="https://github.com/nikhildofe" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      <a href="https://www.linkedin.com/in/nikhildofe" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      <a href="https://www.facebook.com/nmdofe" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-      <a href="https://www.instagram.com/nikhildofe" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-      <a href="https://twitter.com/nmdofe" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-      <a href="https://wa.me/918806693433" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-      <a href="https://t.me/nikhildofe" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-      <a href="https://in.pinterest.com/Dofenikhil" target="_blank"><i class="fab fa-pinterest"></i> Pinterest</a>
+  <div class="subject-section visible" data-subject="Environmental Science">
+    <h2>Environmental Science</h2>
+    <div class="category-badges">
+      <span class="category-badge">🌍 Civil Engineering</span>
+      <span class="category-badge">🌍📡 Electronics & Communication</span>
     </div>
-  </section>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Environmental Science/Environmental Science Chapter 1.pdf')">
+        <i class="fas fa-leaf"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Environmental Science/Environmental Science Chapter 2.pdf')">
+        <i class="fas fa-leaf"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Environmental Science/Environmental Science Chapter 3.pdf')">
+        <i class="fas fa-leaf"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Environmental Science/Environmental Science Chapter 4.pdf')">
+        <i class="fas fa-leaf"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Environmental Science/Environmental Science Chapter 5.pdf')">
+        <i class="fas fa-leaf"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
+    </div>
+  </div>
 
-  <footer>© 2025 Nikhil Dofe</footer>
+  <div class="subject-section visible" data-subject="Structural Engineering">
+    <h2>Structural Engineering</h2>
+    <div class="category-badges">
+      <span class="category-badge">🏢 Civil Engineering</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Structural Engineering/Structural Engineering Chapter 1.pdf')">
+        <i class="fas fa-building"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Structural Engineering/Structural Engineering Chapter 2.pdf')">
+        <i class="fas fa-building"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Structural Engineering/Structural Engineering Chapter 3.pdf')">
+        <i class="fas fa-building"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Structural Engineering/Structural Engineering Chapter 4.pdf')">
+        <i class="fas fa-building"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Structural Engineering/Structural Engineering Chapter 5.pdf')">
+        <i class="fas fa-building"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
+    </div>
+  </div>
 
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('dark-mode');
+  <div class="subject-section visible" data-subject="Hydraulics Engineering">
+    <h2>Hydraulics Engineering</h2>
+    <div class="category-badges">
+      <span class="category-badge">💧 Civil Engineering</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 1.pdf')">
+        <i class="fas fa-water"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 2.pdf')">
+        <i class="fas fa-water"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 3.pdf')">
+        <i class="fas fa-water"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 4.pdf')">
+        <i class="fas fa-water"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Hydraulics Engineering/Hydraulics Engineering Chapter 5.pdf')">
+        <i class="fas fa-water"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section visible" data-subject="Urban Transportation">
+    <h2>Urban Transportation & Planning</h2>
+    <div class="category-badges">
+      <span class="category-badge">🚗 Civil Engineering</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Urban Transportation and Planning/Urban Transportation and Planning Chapter 1.pdf')">
+        <i class="fas fa-road"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Urban Transportation and Planning/Urban Transportation and Planning Chapter 2.pdf')">
+        <i class="fas fa-road"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Urban Transportation and Planning/Urban Transportation and Planning Chapter 3.pdf')">
+        <i class="fas fa-road"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Urban Transportation and Planning/Urban Transportation and Planning Chapter 4.pdf')">
+        <i class="fas fa-road"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Urban Transportation and Planning/Urban Transportation and Planning Chapter 5.pdf')">
+        <i class="fas fa-road"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section visible" data-subject="Air Pollution Waste Management">
+    <h2>Air Pollution & Solid Waste Management</h2>
+    <div class="category-badges">
+      <span class="category-badge">♻️ Civil Engineering</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 1.pdf')">
+        <i class="fas fa-wind"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 2.pdf')">
+        <i class="fas fa-wind"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 3.pdf')">
+        <i class="fas fa-wind"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 4.pdf')">
+        <i class="fas fa-wind"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Air Pollution & Solid Waste Management/Air Pollution & Solid Waste Management Chapter 5.pdf')">
+        <i class="fas fa-wind"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section visible" data-subject="Disaster Management">
+    <h2>Disaster Management</h2>
+    <div class="category-badges">
+      <span class="category-badge">🚨 Civil Engineering</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Disaster Management/Disaster Management Chapter 1.pdf')">
+        <i class="fas fa-shield-alt"></i>
+        <div class="pdf-card-title">Chapter 1</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Disaster Management/Disaster Management Chapter 2.pdf')">
+        <i class="fas fa-shield-alt"></i>
+        <div class="pdf-card-title">Chapter 2</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Disaster Management/Disaster Management Chapter 3.pdf')">
+        <i class="fas fa-shield-alt"></i>
+        <div class="pdf-card-title">Chapter 3</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Disaster Management/Disaster Management Chapter 4.pdf')">
+        <i class="fas fa-shield-alt"></i>
+        <div class="pdf-card-title">Chapter 4</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Disaster Management/Disaster Management Chapter 5.pdf')">
+        <i class="fas fa-shield-alt"></i>
+        <div class="pdf-card-title">Chapter 5</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section visible" data-subject="Community Project">
+    <h2>Community Project Samples</h2>
+    <div class="category-badges">
+      <span class="category-badge">👥 Project Resources</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Community Project/Title Page Samples.pdf')">
+        <i class="fas fa-file-alt"></i>
+        <div class="pdf-card-title">Title Pages</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Community Project/Report Samples.pdf')">
+        <i class="fas fa-file-word"></i>
+        <div class="pdf-card-title">Reports</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section visible" data-subject="Summer Internship 5th">
+    <h2>5th Semester Internship</h2>
+    <div class="category-badges">
+      <span class="category-badge">💼 Internship Samples</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Internship 5th Sem/Title Page Samples.pdf')">
+        <i class="fas fa-file-alt"></i>
+        <div class="pdf-card-title">Title Pages</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Internship 5th Sem/Report Samples.pdf')">
+        <i class="fas fa-file-word"></i>
+        <div class="pdf-card-title">Reports</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section visible" data-subject="Summer Internship 7th">
+    <h2>7th Semester Internship</h2>
+    <div class="category-badges">
+      <span class="category-badge">💼 Internship Samples</span>
+    </div>
+    <div class="pdf-grid">
+      <div class="pdf-card" onclick="openModal('Internship 7th Sem/Title Page Samples.pdf')">
+        <i class="fas fa-file-alt"></i>
+        <div class="pdf-card-title">Title Pages</div>
+      </div>
+      <div class="pdf-card" onclick="openModal('Internship 7th Sem/Report Samples.pdf')">
+        <i class="fas fa-file-word"></i>
+        <div class="pdf-card-title">Reports</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-section">
+    <h2>Get in touch</h2>
+    <p style="color: #666; margin-bottom: 20px; font-size: 0.95em;">Follow me on social media for updates & more resources</p>
+    <div class="social-links">
+      <a href="https://github.com/nikhildofe" target="_blank" rel="noopener noreferrer" class="github">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/nikhildofe" target="_blank" rel="noopener noreferrer" class="linkedin">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://www.facebook.com/nmdofe" target="_blank" rel="noopener noreferrer" class="facebook">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+      <a href="https://www.instagram.com/nikhildofe" target="_blank" rel="noopener noreferrer" class="instagram">
+        <i class="fab fa-instagram"></i> Instagram
+      </a>
+      <a href="https://twitter.com/nmdofe" target="_blank" rel="noopener noreferrer" class="twitter">
+        <i class="fab fa-twitter"></i> Twitter
+      </a>
+      <a href="https://wa.me/918806693433" target="_blank" rel="noopener noreferrer" class="whatsapp">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="https://t.me/nikhildofe" target="_blank" rel="noopener noreferrer" class="telegram">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a href="https://in.pinterest.com/Dofenikhil" target="_blank" rel="noopener noreferrer" class="pinterest">
+        <i class="fab fa-pinterest"></i> Pinterest
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Enhanced Modal -->
+<div id="pdfModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-icon">📄</div>
+    <p id="modalTitle" class="modal-title">Chapter</p>
+    <button class="view-btn" id="viewBtn">👁️ View PDF</button>
+    <button class="download-btn" id="downloadBtn">⬇️ Download</button>
+    <button class="cancel-btn" onclick="closeModal()">✕ Close</button>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Nikhil Dofe | Engineering Notes Hub | Crafted 💻 for Students</p>
+</footer>
+
+<script>
+  // Enhanced Search with Highlighting
+  function searchSubjects() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const subjects = document.querySelectorAll('.subject-section');
+    let visibleCount = 0;
+
+    subjects.forEach(subject => {
+      const subjectName = subject.getAttribute('data-subject').toLowerCase();
+      const titleElement = subject.querySelector('h2');
+      
+      if (subjectName.includes(searchInput) || searchInput === '') {
+        subject.classList.add('visible');
+        visibleCount++;
+        
+        if (searchInput !== '') {
+          highlightText(titleElement, searchInput);
+        } else {
+          removeHighlight(titleElement);
+        }
+      } else {
+        subject.classList.remove('visible');
+      }
+    });
+
+    const section = document.querySelector('section');
+    let noResultsDiv = document.querySelector('.no-results');
+    
+    if (visibleCount === 0 && searchInput !== '') {
+      if (!noResultsDiv) {
+        noResultsDiv = document.createElement('div');
+        noResultsDiv.className = 'no-results';
+        noResultsDiv.innerHTML = '<div class="no-results-icon">🔍</div><p>No subjects found. Try different keywords!</p>';
+        section.insertBefore(noResultsDiv, section.querySelector('.social-section'));
+      }
+    } else {
+      if (noResultsDiv) {
+        noResultsDiv.remove();
+      }
     }
+  }
 
-    const modal = document.getElementById('pdfModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const viewBtn = document.getElementById('viewBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    let currentFile = '';
+  function highlightText(element, searchTerm) {
+    const text = element.textContent;
+    const regex = new RegExp(`\\b(\\w*${searchTerm}\\w*)\\b`, 'gi');
+    const highlightedHTML = text.replace(regex, '<span class="highlight">$1</span>');
+    element.innerHTML = highlightedHTML;
+  }
 
-    function openModal(file) {
-      currentFile = file;
-      modalTitle.textContent = file.split('/').pop();
-      modal.style.display = 'flex';
+  function removeHighlight(element) {
+    element.innerHTML = element.textContent;
+  }
 
-      viewBtn.onclick = () => {
-        window.location.href = currentFile;
-        closeModal();
-      };
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+  }
 
-      downloadBtn.onclick = () => {
-        const link = document.createElement('a');
-        link.href = currentFile;
-        link.download = currentFile.split('/').pop();
-        link.click();
-        closeModal();
-      };
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
     }
+  });
 
-    function closeModal() {
-      modal.style.display = 'none';
-      currentFile = '';
-    }
+  const modal = document.getElementById('pdfModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const viewBtn = document.getElementById('viewBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  let currentFile = '';
 
-    window.onclick = function(event) {
-      if (event.target == modal) closeModal();
+  function openModal(file) {
+    currentFile = file;
+    const fileName = file.split('/').pop().replace('.pdf', '');
+    modalTitle.textContent = fileName;
+    modal.classList.add('active');
+
+    viewBtn.onclick = () => {
+      window.open(currentFile, '_blank');
+      closeModal();
     };
-  </script>
+
+    downloadBtn.onclick = () => {
+      const link = document.createElement('a');
+      link.href = currentFile;
+      link.download = file.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      closeModal();
+    };
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    currentFile = '';
+  }
+
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
+
 </body>
 </html>
-
-
-
